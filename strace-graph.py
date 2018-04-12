@@ -8,6 +8,7 @@ y = [6,7,8,2,4]
 x2 = [1,3,5,9,11]
 y2 = [7,8,2,4,2]
 
+#Displays a bar graph
 plt.bar(x, y, label = 'Bar1', color = 'teal')
 plt.bar(x2, y2, label = 'Bar2', color = 'blue')
 
