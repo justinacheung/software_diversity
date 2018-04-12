@@ -15,7 +15,7 @@ plt.bar(x2, y2, label = 'Bar2', color = 'blue')
 # plt.plot(x, y, label = 'First Line') #label = adds this to a legend
 # plt.plot(x2, y2, label = 'Second Line')
 
-#Graph Labels/Titles
+#Graph Labels/Titles.
 plt.xlabel('Plot Number')
 plt.ylabel('Important var')
 plt.title('Software Diversity\nSTRACE Calls')
