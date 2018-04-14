@@ -1,5 +1,24 @@
 from graphics import *
 import matplotlib.pyplot as plt
+import svgwrite
+
+f = open("trace1", "r")
+f_data = f.read()
+lines = f_data.split("\n")
+i = 0
+sys_calls = []
+
+for line in lines:
+    sys_call = line.split("(")
+    sys_calls.append(sys_call[0])
+    i += 1
+
+print (sys_calls)
+
+dwg = svgwrite.Drawing('test.svg', profile = 'tiny')
+dwg.add(dwg.line((0,0), (10,0), stroke = svgwrite.rgb(10, 10, 16, '%')))
+dwg.add(dwg.text('Test', insert=(0, 0.2), fill = 'red'))
+dwg.save()
 
 #
 x = [2,4,6,8,10]
