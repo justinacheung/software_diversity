@@ -1,77 +1,33 @@
-<<<<<<< HEAD
-from graphics import *
-import matplotlib.pyplot as plt
-import svgwrite
+from collections import OrderedDict
 
 f = open("trace1", "r")
 f_data = f.read()
+f.close()
 lines = f_data.split("\n")
-i = 0
 sys_calls = []
 
 for line in lines:
     sys_call = line.split("(")
-    sys_calls.append(sys_call[0])
-    i += 1
+    if(not(sys_call[0].startswith("+++")) and sys_call[0] != ""):
+      sys_calls.append(sys_call[0])
 
-print (sys_calls)
+syscalls=list(OrderedDict.fromkeys(sys_calls))
+#print (syscalls)
 
-dwg = svgwrite.Drawing('test.svg', profile = 'tiny')
-dwg.add(dwg.line((0,0), (10,0), stroke = svgwrite.rgb(10, 10, 16, '%')))
-dwg.add(dwg.text('Test', insert=(0, 0.2), fill = 'red'))
-dwg.save()
+o = open("output.svg", "w+")
+o.write("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n")
+o.write("<svg width=\"400\" height=\"400\" xmlns=\"http://www.w3.org\" version=\"1.1\">\r\n")
+r=0
+degOffset=360/len(syscalls)
+for syscall in syscalls:
 
-#
-x = [2,4,6,8,10]
-y = [6,7,8,2,4]
+  o.write("<text x=\"260\" y=\"200\" font-family=\"Verdana\" font-size=\"12\" transform=\"rotate(" +
+          str(r*degOffset) + " 200,200)")
+  if((r*degOffset)>90 and (r*degOffset) <= 270):
+    o.write("rotate(180 260,200)\" text-anchor=\"end")
+  o.write("\">" + syscall + "</text>\r\n")
+  r+=1
 
-x2 = [1,3,5,9,11]
-y2 = [7,8,2,4,2]
+o.write("</svg>\r\n")
+o.close()
 
-plt.bar(x, y, label = 'Bar1', color = 'teal')
-plt.bar(x2, y2, label = 'Bar2', color = 'blue')
-
-# #Plots the values
-# plt.plot(x, y, label = 'First Line') #label = adds this to a legend
-# plt.plot(x2, y2, label = 'Second Line')
-
-#Graph Labels/Titles.
-plt.xlabel('Plot Number')
-plt.ylabel('Important var')
-plt.title('Software Diversity\nSTRACE Calls')
-
-#Adds legend to graph
-plt.legend()
-
-#Shows the graph
-plt.show()
-=======
-from graphics import *
-import matplotlib.pyplot as plt
-
-#
-x = [2,4,6,8,10]
-y = [6,7,8,2,4]
-
-x2 = [1,3,5,9,11]
-y2 = [7,8,2,4,2]
-
-#Displays a bar graph
-plt.bar(x, y, label = 'Bar1', color = 'teal')
-plt.bar(x2, y2, label = 'Bar2', color = 'blue')
-
-# #Plots the values
-# plt.plot(x, y, label = 'First Line') #label = adds this to a legend
-# plt.plot(x2, y2, label = 'Second Line')
-
-#Graph Labels/Titles.
-plt.xlabel('Plot Number')
-plt.ylabel('Important var')
-plt.title('Software Diversity\nSTRACE Calls')
-
-#Adds legend to graph
-plt.legend()
-
-#Shows the graph
-plt.show()
->>>>>>> 717df77dd83c30fa208a088361543bfe02148b33
