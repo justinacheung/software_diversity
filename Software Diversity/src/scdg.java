@@ -2,8 +2,7 @@ import java.io.*;
 import java.util.*;
 
 //SCDG = System Call Dependence Graph
-public class scdg
-{
+public class scdg {
 	public static void main(String[] args) {
 		
 	    // The name of the file to open.

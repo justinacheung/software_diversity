@@ -46,4 +46,3 @@ for j in range(i-1):
 
 o.write("</svg>\r\n")
 o.close()
-
