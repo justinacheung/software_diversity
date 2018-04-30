@@ -1,0 +1,2 @@
+python ./strace-graph.py if=trace1 of=output.svg
+
